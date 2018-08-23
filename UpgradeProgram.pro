@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -27,12 +27,14 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     MyUpgradeProgramPrivate.cpp \
-    MyUpgradeProgram.cpp
+    MyUpgradeProgram.cpp \
+    MyUdpCommunication.cpp
 
 HEADERS += \
         mainwindow.h \
     MyUpgradeProgramPrivate.h \
-    MyUpgradeProgram.h
+    MyUpgradeProgram.h \
+    MyUdpCommunication.h
 
 FORMS += \
         mainwindow.ui

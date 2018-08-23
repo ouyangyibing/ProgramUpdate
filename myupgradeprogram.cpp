@@ -3,12 +3,22 @@
 #include <QThread>
 #include <QDebug>
 #include <QSettings>
+#include <QFile>
 
 MyUpgradeProgram::MyUpgradeProgram(QObject *parent) : QObject(parent)
 {    
-    if (isUpdataEnabled()) {
-        creationUpdataThread();
+    //检查是否启用程序自动更新的功能
+    if (!isUpdataEnabled()) {
+        return ;
     }
+
+    if (QFile::exists("Setup")) {
+        //如果存在，则启动替换程序的批处理，并退出此程序
+    }
+
+    //启动UDP检查更新
+
+
 }
 
 MyUpgradeProgram::~MyUpgradeProgram()
@@ -38,6 +48,7 @@ bool MyUpgradeProgram::isUpdataEnabled()
     return enabled;
 }
 
+//下载时启用，不然用多线程浪费
 void MyUpgradeProgram::creationUpdataThread()
 {
     //结束时清理对象

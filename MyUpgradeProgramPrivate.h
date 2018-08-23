@@ -15,6 +15,7 @@ private:
     explicit MyUpgradeProgramPrivate(QObject *parent = nullptr);
 
 public:
+    ~MyUpgradeProgramPrivate(){}
 
 
 signals:
