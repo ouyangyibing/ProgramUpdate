@@ -2,6 +2,7 @@
 #include <QDebug>
 #include <QSettings>
 #include <windows.h>
+#include "MyUdpCommunication.h"
 
 MyUpgradeProgramPrivate::MyUpgradeProgramPrivate(QObject *parent) : QObject(parent)
 {    
@@ -12,4 +13,5 @@ MyUpgradeProgramPrivate::MyUpgradeProgramPrivate(QObject *parent) : QObject(pare
 void MyUpgradeProgramPrivate::slotStartTask()
 {    
     qDebug()<< "start" ;
+    new MyUdpCommunication(this);
 }
