@@ -1,7 +1,7 @@
 #include "MyUpgradeProgramPrivate.h"
 #include <QDebug>
-#include <QThread>
 #include <QSettings>
+#include <windows.h>
 
 MyUpgradeProgramPrivate::MyUpgradeProgramPrivate(QObject *parent) : QObject(parent)
 {    

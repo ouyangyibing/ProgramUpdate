@@ -28,13 +28,15 @@ SOURCES += \
         mainwindow.cpp \
     MyUpgradeProgramPrivate.cpp \
     MyUpgradeProgram.cpp \
-    MyUdpCommunication.cpp
+    MyUdpCommunication.cpp \
+    doc_Json.cpp
 
 HEADERS += \
         mainwindow.h \
     MyUpgradeProgramPrivate.h \
     MyUpgradeProgram.h \
-    MyUdpCommunication.h
+    MyUdpCommunication.h \
+    doc_Json.h
 
 FORMS += \
         mainwindow.ui

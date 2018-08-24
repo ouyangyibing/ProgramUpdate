@@ -20,9 +20,8 @@ signals:
 public slots:
 
 private:
-    bool isClean = false;
-    QThread *thread;
-    MyUpgradeProgramPrivate *task;
+    QThread *thread = nullptr;
+    MyUpgradeProgramPrivate *task = nullptr;
 
     void creationUpdataThread();
 };

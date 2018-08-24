@@ -17,7 +17,6 @@ private:
 public:
     ~MyUpgradeProgramPrivate(){}
 
-
 signals:
     void startTask();
 
@@ -25,8 +24,7 @@ public slots:
     void slotStartTask();
 
 private:
-    QSettings *setting;
-
+    QSettings *setting = nullptr;
 };
 
 #endif // MYUPGRADEPROGRAMPRIVATE_H
