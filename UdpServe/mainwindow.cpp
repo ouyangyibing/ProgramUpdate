@@ -4,7 +4,9 @@
 #include <QHostAddress>
 #include "doc_Json.h"
 
-const qint16 Port = 23232;
+//udp 端口
+const qint16 srvPort = 23232;
+const qint16 cltPort = 23233;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -12,10 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-
-
     udp = new QUdpSocket;
-    udp->bind(Port, QUdpSocket::ShareAddress | QUdpSocket::ReuseAddressHint);
+    udp->bind(cltPort, QUdpSocket::DontShareAddress | QUdpSocket::ReuseAddressHint);
     connect(udp, &QUdpSocket::readyRead, this, &MainWindow::slotProcessPendingDatagrams);
 }
 
@@ -39,12 +39,31 @@ void MainWindow::slotProcessPendingDatagrams()
             //占位符
         }
     }
+
+    QJsonObject json_;
+    JS::donToJsObj(datagram, json_);
+    switch (json_.value(MsgKey::Terminal).toInt()) {
+    case Serve:
+        //return;
+
+    case Client:
+        break;
+
+    default:
+        break;
+    }
+
     ui->textBrowser->append("srv ip:" + srvIp);
     ui->textBrowser->append("srv port:" + QString::number(clientPort));
     ui->textBrowser->append(QString::fromLocal8Bit(datagram) + "\n");
 
-    setWindowState(Qt::WindowMinimized);
-    setWindowState(Qt::WindowActive);
+    //setWindowState(Qt::WindowMinimized);
+    //setWindowState(Qt::WindowActive);
     raise();
     activateWindow();
+
+    QJsonObject json;
+    json.insert(MsgKey::Terminal, Serve);
+    json.insert(MsgKey::Tytp, HeartBeat);
+    udp->writeDatagram(JS::jsonToDoc(json), QHostAddress(srvIp), srvPort);
 }
